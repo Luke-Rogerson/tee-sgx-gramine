@@ -1,12 +1,25 @@
 const https = require('https');
-const { spawn } = require('child_process');
+const { spawn, execSync } = require('child_process');
 const fs = require('fs');
+
+console.log("================================");
+console.log("Host: Building enclave...");
+console.log("================================");
+
+// Step 1: Build the enclave first
+try {
+  execSync('make SGX=1', { stdio: 'inherit' });
+  console.log("Host: Enclave built successfully");
+} catch (error) {
+  console.error("Host: Failed to build enclave:", error.message);
+  process.exit(1);
+}
 
 console.log("================================");
 console.log("Host: Fetching data from API...");
 console.log("================================");
 
-// Make a GET request to the JSONPlaceholder API on the host
+// Step 2: Make a GET request to the JSONPlaceholder API on the host
 const url = 'https://jsonplaceholder.typicode.com/todos/1';
 
 https.get(url, (response) => {

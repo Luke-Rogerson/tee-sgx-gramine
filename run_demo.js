@@ -3,11 +3,21 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 
 console.log("========================================");
-console.log("Demo: Fetching API data and running enclave");
+console.log("Demo: Building enclave and fetching API data");
 console.log("========================================");
 
-// Step 1: Make network call on host
-console.log("Step 1: Making network call to JSONPlaceholder API...");
+// Step 1: Build the enclave first
+console.log("Step 1: Building SGX enclave...");
+try {
+  execSync('make SGX=1', { stdio: 'inherit' });
+  console.log("✓ Enclave built successfully");
+} catch (error) {
+  console.error("✗ Failed to build enclave:", error.message);
+  process.exit(1);
+}
+
+// Step 2: Make network call on host
+console.log("Step 2: Making network call to JSONPlaceholder API...");
 const url = 'https://jsonplaceholder.typicode.com/todos/1';
 
 https.get(url, (response) => {
@@ -22,24 +32,22 @@ https.get(url, (response) => {
       const todoData = JSON.parse(data);
       console.log("✓ API data fetched successfully");
 
-      // Step 2: Save data to file
-      console.log("Step 2: Saving data for enclave...");
+      // Step 3: Save data to file
+      console.log("Step 3: Saving data for enclave...");
       fs.writeFileSync('api_data.json', JSON.stringify(todoData, null, 2));
       console.log("✓ Data saved to api_data.json");
 
-      // Step 3: Build and run enclave
-      console.log("Step 3: Building and running enclave...");
+      // Step 4: Run the enclave
+      console.log("Step 4: Running enclave with API data...");
       console.log("========================================");
 
       try {
-        // Build the manifest
-        execSync('make SGX=1', { stdio: 'inherit' });
-
-        // Run the enclave
         execSync('gramine-sgx ./nodejs helloworld.js', { stdio: 'inherit' });
+        console.log("========================================");
+        console.log("✓ Enclave execution completed successfully");
 
       } catch (error) {
-        console.error("Error running enclave:", error.message);
+        console.error("✗ Error running enclave:", error.message);
       } finally {
         // Clean up
         if (fs.existsSync('api_data.json')) {
@@ -52,10 +60,10 @@ https.get(url, (response) => {
       console.log("Demo completed!");
 
     } catch (error) {
-      console.error("Error parsing API response:", error.message);
+      console.error("✗ Error parsing API response:", error.message);
     }
   });
 
 }).on('error', (error) => {
-  console.error("Network request failed:", error.message);
+  console.error("✗ Network request failed:", error.message);
 }); 
