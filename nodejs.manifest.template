@@ -42,3 +42,7 @@ sgx.trusted_files = [
   "file:/usr/{{ arch_libdir }}/",
   "file:helloworld.js",
 ]
+
+sgx.allowed_files = [
+  "file:api_data.json",
+]

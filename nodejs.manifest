@@ -34,6 +34,9 @@ enclave_size = "2G"
 max_threads = 32
 edmm_enable = false
 use_exinfo = false
+allowed_files = [
+    "file:api_data.json",
+]
 isvprodid = 0
 isvsvn = 0
 remote_attestation = "none"
@@ -4934,11 +4937,11 @@ sha256 = "a01f83c2efeae6bd0f682d8971d12aaaeb7eb6f7a48a2538379dea572c54bada"
 
 [[sgx.trusted_files]]
 uri = "file:/lib/x86_64-linux-gnu/libsqlite3.so.0"
-sha256 = "8eb3cdbd1f275471b2e0e2293463d26ff43aea8f511bcaabfcb0c1f4da460586"
+sha256 = "cb9a664c3377c3f1101e9b14f9c8bf489ad7662fe9e7d16e3bb7951fa9abf06c"
 
 [[sgx.trusted_files]]
 uri = "file:/lib/x86_64-linux-gnu/libsqlite3.so.0.8.6"
-sha256 = "8eb3cdbd1f275471b2e0e2293463d26ff43aea8f511bcaabfcb0c1f4da460586"
+sha256 = "cb9a664c3377c3f1101e9b14f9c8bf489ad7662fe9e7d16e3bb7951fa9abf06c"
 
 [[sgx.trusted_files]]
 uri = "file:/lib/x86_64-linux-gnu/libss.so.2"
@@ -15158,11 +15161,11 @@ sha256 = "a01f83c2efeae6bd0f682d8971d12aaaeb7eb6f7a48a2538379dea572c54bada"
 
 [[sgx.trusted_files]]
 uri = "file:/usr/lib/x86_64-linux-gnu/libsqlite3.so.0"
-sha256 = "8eb3cdbd1f275471b2e0e2293463d26ff43aea8f511bcaabfcb0c1f4da460586"
+sha256 = "cb9a664c3377c3f1101e9b14f9c8bf489ad7662fe9e7d16e3bb7951fa9abf06c"
 
 [[sgx.trusted_files]]
 uri = "file:/usr/lib/x86_64-linux-gnu/libsqlite3.so.0.8.6"
-sha256 = "8eb3cdbd1f275471b2e0e2293463d26ff43aea8f511bcaabfcb0c1f4da460586"
+sha256 = "cb9a664c3377c3f1101e9b14f9c8bf489ad7662fe9e7d16e3bb7951fa9abf06c"
 
 [[sgx.trusted_files]]
 uri = "file:/usr/lib/x86_64-linux-gnu/libss.so.2"
@@ -20918,7 +20921,7 @@ sha256 = "7c621a5d938656963a6c7773442f3e7e0df998291d4a06ef676fe912998f501f"
 
 [[sgx.trusted_files]]
 uri = "file:helloworld.js"
-sha256 = "d252bca5d68c5040c9a9117e6a2a205d19f36d56cac1f1db2e5e000f259a39e2"
+sha256 = "bff80747c40cc1384138e08cc62236143af72f6c14f92b208b7fd424a89f6cd2"
 
 [sgx.cpu_features]
 avx = "unspecified"

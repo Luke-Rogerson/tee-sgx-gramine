@@ -47,16 +47,20 @@ endif
 .PHONY: check
 check: all
 	$(GRAMINE) ./nodejs helloworld.js > OUTPUT
-	@grep -q "Hello World" OUTPUT && echo "[ Success 1/1 ]"
+	@grep -q "Enclave: Data processing completed successfully!" OUTPUT && echo "[ Success 1/1 ]"
 	@rm OUTPUT
+
+.PHONY: demo
+demo:
+	@echo "Running API demo..."
+	node run_demo.js
 
 .PHONY: clean
 clean:
-	$(RM) *.manifest *.manifest.sgx *.token *.sig OUTPUT
+	$(RM) *.manifest *.manifest.sgx *.token *.sig OUTPUT api_data.json
 
 .PHONY: distclean
 distclean: clean
-
 
 rebuild: clean 
 	make SGX=1
