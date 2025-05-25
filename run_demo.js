@@ -16,12 +16,19 @@ try {
   process.exit(1);
 }
 
-// Step 2: Make network call on host
+// Step 2: Make network call on host with TLS certificate capture
 console.log("Step 2: Making network call to JSONPlaceholder API...");
 const url = 'https://jsonplaceholder.typicode.com/todos/1';
 
-https.get(url, (response) => {
+const request = https.get(url, (response) => {
   let data = '';
+
+  // Capture TLS certificate information
+  const socket = response.socket;
+  const cert = socket.getPeerCertificate(true);
+  const certChain = socket.getPeerCertificateChain ? socket.getPeerCertificateChain() : [];
+
+  console.log("✓ TLS connection established and certificate captured");
 
   response.on('data', (chunk) => {
     data += chunk;
@@ -32,13 +39,30 @@ https.get(url, (response) => {
       const todoData = JSON.parse(data);
       console.log("✓ API data fetched successfully");
 
+      // Prepare data with TLS certificate information
+      const responseWithCert = {
+        data: todoData,
+        tlsCertificate: {
+          certificate: cert.raw ? cert.raw.toString('base64') : null,
+          certificateChain: certChain.map(c => c.raw ? c.raw.toString('base64') : null),
+          subject: cert.subject,
+          issuer: cert.issuer,
+          validFrom: cert.valid_from,
+          validTo: cert.valid_to,
+          fingerprint: cert.fingerprint,
+          serialNumber: cert.serialNumber
+        },
+        timestamp: new Date().toISOString(),
+        source: url
+      };
+
       // Step 3: Save data to file
-      console.log("Step 3: Saving data for enclave...");
-      fs.writeFileSync('api_data.json', JSON.stringify(todoData, null, 2));
-      console.log("✓ Data saved to api_data.json");
+      console.log("Step 3: Saving data and certificate for enclave...");
+      fs.writeFileSync('api_data.json', JSON.stringify(responseWithCert, null, 2));
+      console.log("✓ Data and certificate saved to api_data.json");
 
       // Step 4: Run the enclave
-      console.log("Step 4: Running enclave with API data...");
+      console.log("Step 4: Running enclave with API data and certificate...");
       console.log("========================================");
 
       try {
@@ -64,6 +88,13 @@ https.get(url, (response) => {
     }
   });
 
-}).on('error', (error) => {
+});
+
+request.on('error', (error) => {
   console.error("✗ Network request failed:", error.message);
+});
+
+// Handle TLS errors specifically
+request.on('tlsClientError', (error) => {
+  console.error("✗ TLS error:", error.message);
 }); 
