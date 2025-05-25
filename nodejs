@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /home/azureuser/.nvm/versions/node/v22.16.0/bin/node "$@" 
