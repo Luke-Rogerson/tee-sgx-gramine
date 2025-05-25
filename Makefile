@@ -18,7 +18,7 @@ ifeq ($(SGX),1)
 all: nodejs.manifest.sgx nodejs.sig
 endif
 
-nodejs.manifest: nodejs.manifest.template helloworld.js
+nodejs.manifest: nodejs.manifest.template enclave.js
 	gramine-manifest \
 		-Dlog_level=$(GRAMINE_LOG_LEVEL) \
 		-Darch_libdir=$(ARCH_LIBDIR) \
@@ -44,24 +44,28 @@ else
 GRAMINE = gramine-sgx
 endif
 
-.PHONY: check
-check: all
-	$(GRAMINE) ./nodejs helloworld.js > OUTPUT
-	@grep -q "Enclave: Data processing completed successfully!" OUTPUT && echo "[ Success 1/1 ]"
-	@rm OUTPUT
+.PHONY: host
+host:
+	@echo "Running host operations..."
+	node host.js
 
-.PHONY: demo
-demo:
-	@echo "Running API demo..."
-	node run_demo.js
+.PHONY: enclave
+enclave: all
+	@echo "Running enclave operations in SGX..."
+	gramine-sgx ./nodejs enclave.js
+
+.PHONY: punch-it
+punch-it: clean
+	@echo "Building SGX enclave..."
+	$(MAKE) SGX=1
+	@echo "Running host operations..."
+	node host.js
+	@echo "Running enclave operations in SGX..."
+	gramine-sgx ./nodejs enclave.js
 
 .PHONY: clean
 clean:
-	$(RM) *.manifest *.manifest.sgx *.token *.sig OUTPUT api_data.json
+	$(RM) *.manifest *.manifest.sgx *.token *.sig OUTPUT
 
-.PHONY: distclean
-distclean: clean
-
-rebuild: clean 
-	make SGX=1
-	gramine-direct nodejs helloworld.js 
+# .PHONY: distclean
+# distclean: clean

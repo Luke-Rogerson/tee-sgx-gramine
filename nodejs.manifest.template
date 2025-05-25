@@ -20,6 +20,7 @@ fs.mounts = [
 {%- if nodejs_usr_share_dir %}
   { uri = "file:{{ nodejs_usr_share_dir }}", path = "{{ nodejs_usr_share_dir }}" },
 {%- endif %}
+  { uri = "file:/home/azureuser/nodejs", path = "/home/azureuser/nodejs" },
 ]
 
 # Node.js expects around 1.7GB of heap on startup, see https://github.com/nodejs/node/issues/13018
@@ -40,7 +41,7 @@ sgx.trusted_files = [
   "file:{{ gramine.runtimedir() }}/",
   "file:{{ arch_libdir }}/",
   "file:/usr/{{ arch_libdir }}/",
-  "file:helloworld.js",
+  "file:enclave.js",
 ]
 
 sgx.allowed_files = [

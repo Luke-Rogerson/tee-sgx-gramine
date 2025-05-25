@@ -29,6 +29,10 @@ path = "/usr//lib/x86_64-linux-gnu"
 uri = "file:/home/azureuser/.nvm/versions/node/v22.16.0/bin"
 path = "/home/azureuser/.nvm/versions/node/v22.16.0/bin"
 
+[[fs.mounts]]
+uri = "file:/home/azureuser/nodejs"
+path = "/home/azureuser/nodejs"
+
 [sgx]
 enclave_size = "2G"
 max_threads = 32
@@ -20920,8 +20924,8 @@ uri = "file:/usr/lib/x86_64-linux-gnu/xtables/libxt_udp.so"
 sha256 = "7c621a5d938656963a6c7773442f3e7e0df998291d4a06ef676fe912998f501f"
 
 [[sgx.trusted_files]]
-uri = "file:helloworld.js"
-sha256 = "4ce9f3031683050df51a3096dee364a2ac33087052dfa0432d4c356480fd3b82"
+uri = "file:enclave.js"
+sha256 = "4fbde820fd90b6ba616ff2bc40ad3be7bafad2dd4155702f355d04912b4b6969"
 
 [sgx.cpu_features]
 avx = "unspecified"
