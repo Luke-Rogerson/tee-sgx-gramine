@@ -127,7 +127,7 @@ const server = net.createServer((socket) => {
         // Verify TLS certificate
         const certValid = verifyBinanceTLSCertificate(
           requestData.tlsCertificate,
-          'fapi.binance.com'
+          'api.binance.us'
         );
 
         if (certValid) {

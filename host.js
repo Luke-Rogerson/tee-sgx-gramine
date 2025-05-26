@@ -29,7 +29,7 @@ const BINANCE_SYMBOLS = {
 // Function to fetch Binance price with TLS certificate
 function fetchBinancePriceWithTLS(symbol) {
   return new Promise((resolve, reject) => {
-    const url = `https://fapi.binance.com/fapi/v1/ticker/price?symbol=${symbol}`;
+    const url = `https://api.binance.us/api/v3/ticker/price?symbol=${symbol}`;
     const urlObj = new URL(url);
 
     const options = {

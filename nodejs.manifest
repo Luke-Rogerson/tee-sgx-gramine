@@ -4308,6 +4308,10 @@ uri = "file:/lib/x86_64-linux-gnu/libnss3.so"
 sha256 = "ba1f351fee961ca346cc303a2e484102e7a679ab52073966ea4351734650d52d"
 
 [[sgx.trusted_files]]
+uri = "file:/lib/x86_64-linux-gnu/libnss_aad.so.2"
+sha256 = "f020494f3133514138ab2504b199eaf1ec5337cebc0e9a9f57f49a6d8f4dcace"
+
+[[sgx.trusted_files]]
 uri = "file:/lib/x86_64-linux-gnu/libnss_compat.so"
 sha256 = "2b436557c59f0b57aa34ea8e293bb60fd95091ebf8522b3f5aaf35014800bf21"
 
@@ -9932,6 +9936,10 @@ uri = "file:/lib/x86_64-linux-gnu/sasl2/libscram.so.2.0.25"
 sha256 = "bb7362a0ba1c2668522286dbeddc52965a903e2d9ed7fc636d0ecf1a4c6e9d12"
 
 [[sgx.trusted_files]]
+uri = "file:/lib/x86_64-linux-gnu/security/pam_aad.so"
+sha256 = "60fa719f4cc27de44b0a1c80005dd750fa5348deba2a8887d0b7f09c6e804617"
+
+[[sgx.trusted_files]]
 uri = "file:/lib/x86_64-linux-gnu/security/pam_access.so"
 sha256 = "22a9b3daf8516ac05f4335fd074de2f6d6d668103ca9ccabd9c864c3e1de3fda"
 
@@ -14530,6 +14538,10 @@ sha256 = "c32583a53640c144757419b977a76976ee3dbda7b905a0af1046ace3c570ae98"
 [[sgx.trusted_files]]
 uri = "file:/usr/lib/x86_64-linux-gnu/libnss3.so"
 sha256 = "ba1f351fee961ca346cc303a2e484102e7a679ab52073966ea4351734650d52d"
+
+[[sgx.trusted_files]]
+uri = "file:/usr/lib/x86_64-linux-gnu/libnss_aad.so.2"
+sha256 = "f020494f3133514138ab2504b199eaf1ec5337cebc0e9a9f57f49a6d8f4dcace"
 
 [[sgx.trusted_files]]
 uri = "file:/usr/lib/x86_64-linux-gnu/libnss_compat.so"
@@ -20156,6 +20168,10 @@ uri = "file:/usr/lib/x86_64-linux-gnu/sasl2/libscram.so.2.0.25"
 sha256 = "bb7362a0ba1c2668522286dbeddc52965a903e2d9ed7fc636d0ecf1a4c6e9d12"
 
 [[sgx.trusted_files]]
+uri = "file:/usr/lib/x86_64-linux-gnu/security/pam_aad.so"
+sha256 = "60fa719f4cc27de44b0a1c80005dd750fa5348deba2a8887d0b7f09c6e804617"
+
+[[sgx.trusted_files]]
 uri = "file:/usr/lib/x86_64-linux-gnu/security/pam_access.so"
 sha256 = "22a9b3daf8516ac05f4335fd074de2f6d6d668103ca9ccabd9c864c3e1de3fda"
 
@@ -20925,7 +20941,7 @@ sha256 = "7c621a5d938656963a6c7773442f3e7e0df998291d4a06ef676fe912998f501f"
 
 [[sgx.trusted_files]]
 uri = "file:enclave.js"
-sha256 = "e773d1339c2717e95764b053d11fffd0291fba894be26dc1a9749f7f669da79f"
+sha256 = "07b1f4baf929c6b902da830a324cf7e0388e21ee9e436568bedbe0eeb169adaa"
 
 [[sgx.trusted_files]]
 uri = "file:node_modules/.bin/mime"
