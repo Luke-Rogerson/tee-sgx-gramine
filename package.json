@@ -1,0 +1,13 @@
+{
+  "name": "nodejs-enclave-tls-validator",
+  "version": "1.0.0",
+  "description": "Express server with enclave TLS validation",
+  "main": "host.js",
+  "scripts": {
+    "start": "node host.js",
+    "dev": "node host.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+} 

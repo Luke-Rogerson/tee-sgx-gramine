@@ -20925,7 +20925,7 @@ sha256 = "7c621a5d938656963a6c7773442f3e7e0df998291d4a06ef676fe912998f501f"
 
 [[sgx.trusted_files]]
 uri = "file:enclave.js"
-sha256 = "4fbde820fd90b6ba616ff2bc40ad3be7bafad2dd4155702f355d04912b4b6969"
+sha256 = "be43221fd3b83d0233e22b4d9efba392af6f0d8d0002aff1b69c111963e32523"
 
 [sgx.cpu_features]
 avx = "unspecified"

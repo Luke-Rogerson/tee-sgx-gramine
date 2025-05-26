@@ -55,17 +55,11 @@ enclave: all
 	gramine-sgx ./nodejs enclave.js
 
 .PHONY: punch-it
-punch-it: clean
+rebuild: clean
 	@echo "Building SGX enclave..."
 	$(MAKE) SGX=1
-	@echo "Running host operations..."
-	node host.js
-	@echo "Running enclave operations in SGX..."
-	gramine-sgx ./nodejs enclave.js
 
 .PHONY: clean
 clean:
 	$(RM) *.manifest *.manifest.sgx *.token *.sig OUTPUT
 
-# .PHONY: distclean
-# distclean: clean
