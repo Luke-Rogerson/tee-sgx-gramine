@@ -42,6 +42,7 @@ sgx.trusted_files = [
   "file:{{ arch_libdir }}/",
   "file:/usr/{{ arch_libdir }}/",
   "file:enclave.js",
+  "file:node_modules/",
 ]
 
 sgx.allowed_files = [
