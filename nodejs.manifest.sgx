@@ -20941,7 +20941,7 @@ sha256 = "7c621a5d938656963a6c7773442f3e7e0df998291d4a06ef676fe912998f501f"
 
 [[sgx.trusted_files]]
 uri = "file:enclave.js"
-sha256 = "07b1f4baf929c6b902da830a324cf7e0388e21ee9e436568bedbe0eeb169adaa"
+sha256 = "c632faed2f689c2daabca65c79a854a394321d0fcce7d4847ef79b8611b91574"
 
 [[sgx.trusted_files]]
 uri = "file:node_modules/.bin/mime"
