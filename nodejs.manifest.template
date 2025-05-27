@@ -42,7 +42,15 @@ sgx.trusted_files = [
   "file:{{ arch_libdir }}/",
   "file:/usr/{{ arch_libdir }}/",
   "file:enclave.js",
-  "file:node_modules/",
+  
+  # secp256k1 module (entire folder)
+  "file:node_modules/secp256k1/",
+  
+  # node-gyp-build dependency (required for loading native modules)
+  "file:node_modules/node-gyp-build/",
+  
+  # node-addon-api dependency (required by secp256k1)
+  "file:node_modules/node-addon-api/",
 ]
 
 sgx.allowed_files = [

@@ -34,6 +34,7 @@ nodejs.manifest.sgx nodejs.sig: sgx_sign
 
 .INTERMEDIATE: sgx_sign
 sgx_sign: nodejs.manifest
+	@echo "Signing SGX enclave..."
 	gramine-sgx-sign \
 		--manifest $< \
 		--output $<.sgx
